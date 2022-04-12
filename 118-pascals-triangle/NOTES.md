@@ -1,1 +1,1 @@
-​
+pascal's triangle done by brute force
