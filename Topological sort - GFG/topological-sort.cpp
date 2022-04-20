@@ -6,8 +6,8 @@ using namespace std;
 class Solution
 {
 	public:
-	
-	void dfs(int start,vector<int>& vis,vector<int> adj[], stack<int> &st){
+	//USING DFS
+	/*void dfs(int start,vector<int>& vis,vector<int> adj[], stack<int> &st){
 	    vis[start]=1;
 	    
 	    for(auto it:adj[start]){
@@ -33,6 +33,39 @@ class Solution
 	    while(!st.empty()){
 	        ans.push_back(st.top());
 	        st.pop();
+	    }
+	    
+	    return ans;
+	}*/
+	
+	
+	//USING KAHN'S ALGO(BFS)
+	
+	vector<int> topoSort(int V, vector<int> adj[]){
+	    vector<int> indegree(V,0);
+	    queue<int> q;
+	    vector<int> ans;
+	    
+	    for(int i=0;i<V;i++){
+	        for(auto it: adj[i])
+	        indegree[it]++;
+	    }
+	    
+	    for(int i=0;i<V;i++){
+	        if(indegree[i]==0)
+	        q.push(i);
+	    }
+	    
+	    while(!q.empty()){
+	        int node=q.front();
+	        q.pop();
+	        ans.push_back(node);
+	        
+	        for(auto it: adj[node]){
+	            indegree[it]--;
+	            if(indegree[it]==0)
+	            q.push(it);
+	        }
 	    }
 	    
 	    return ans;
