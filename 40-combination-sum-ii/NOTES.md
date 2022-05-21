@@ -1,0 +1,1 @@
+both pattern 1(using set for distinct combinations) and pattern 2
