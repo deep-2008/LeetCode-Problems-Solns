@@ -1,3 +1,4 @@
+//PATTERN-1 ->THIS WILL GIVE TLE
 /*#define vii vector<vector<int>> 
 #define vi vector<int>
 class Solution {
@@ -36,7 +37,7 @@ public:
     }
 };*/
 
-
+//PATTERN-2
 #define vii vector<vector<int>> 
 #define vi vector<int>
 class Solution {
