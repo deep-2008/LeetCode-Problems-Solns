@@ -12,7 +12,7 @@ public:
             if(left==right)
                 maxl = max(maxl,left);
             
-            else if(right>=left){
+            else if(right>left){
                 left=0;
                 right=0;
             }
@@ -29,7 +29,7 @@ public:
             if(left==right)
                 maxl=max(maxl,right);
             
-            else if(left>=right){
+            else if(left>right){
                 right=0;
                 left=0;
             }
