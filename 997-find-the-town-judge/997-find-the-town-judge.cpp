@@ -18,25 +18,19 @@ public:
             for(auto it: adj[i]){
                 indeg[it]++;
             }
-        }
-        
-        int judge=0;
-        
-        for(int i=0;i<n+1;i++){
-            if(indeg[i]==n-1 ){
-                judge= i;
-                break;
-            }
-        }
-        
-        for(int i=0;i<n+1;i++){
+            
             for(auto it: trans[i]){
                 outdeg[it]++;
             }
         }
         
-        if(judge!=0 && outdeg[judge]==0)
-            return judge;
+      //  int judge=0;
+        
+        for(int i=0;i<n+1;i++){
+            if(indeg[i]==n-1 && outdeg[i]==0){
+               return i;
+            }
+        }
         
         
         return -1;
