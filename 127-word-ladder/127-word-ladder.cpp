@@ -12,10 +12,10 @@ public:
         
         queue<string> q;
         
-        // set<string> vis;
-        // vis.insert(beginWord);
-        unordered_map<string,int> mp;
-        mp[beginWord]=1;
+        set<string> vis;
+        vis.insert(beginWord);
+        // unordered_map<string,int> mp;
+        // mp[beginWord]=1;
         
         q.push(beginWord);
         
@@ -41,12 +41,12 @@ public:
                         if(j!=old){
                         node[i]=j;
                         
-                        //if(list.find(node)!=list.end() && !vis.count(node)){
-                            if(binary_search(wordList.begin(),wordList.end(),node) && !mp[node]){
+                        if(list.find(node)!=list.end() && !vis.count(node)){
+                            // if(binary_search(wordList.begin(),wordList.end(),node) && !mp[node]){
                             q.push(node);
-                           //vis.insert(node);
-                           // list.erase(node);
-                                mp[node]=1;
+                          vis.insert(node);
+                           list.erase(node);
+                               // mp[node]=1;
                         }
                       }
                     }
