@@ -25,7 +25,7 @@ public:
                             l=mid+1;
                     }
                 }
-                j=j+n;
+                //j=j+n;
             }
         }
         return false;
