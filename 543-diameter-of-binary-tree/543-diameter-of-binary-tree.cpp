@@ -10,43 +10,30 @@
  * };
  */
 class Solution {
-public:
-    int solve(TreeNode* root,int &res){
+    int ans=0;
+     int diameter(TreeNode* root){
         if(root==NULL)
             return 0;
-        int l=solve(root->left,res);
-        int r=solve(root->right,res);
         
-        int temp=max(l,r)+1;
-        res =max(res,l+r);
-       // int ans=l+r+1;
+        int lh=diameter(root->left);
         
-        //res=max(res,ans);
-        return temp;
+         int rh=diameter(root->right);
+        
+        ans = max(ans,(lh+rh));
+        
+        return max(lh,rh)+1;
     }
+    
+   
+    
+public:
+    
     int diameterOfBinaryTree(TreeNode* root) {
-        int res=INT_MIN;
+        if(root==NULL)
+            return 0;
         
-        solve(root,res);
-        return res;
+        diameter(root);
+        
+        return ans;
     }
 };
-
-
-/*class Solution {
-public:
-    int hight(TreeNode* root,int &ans){
-        if(root == NULL){
-            return 0;
-        }
-        int l = hight(root->left,ans);
-        int r = hight(root->right,ans);
-        ans = max(ans,l+r);
-        return (max(l,r)+1);
-    }
-    int diameterOfBinaryTree(TreeNode* root) {
-        int an = INT_MIN;
-        int ht =  hight(root,an);
-        return an;
-    }
-};*/
