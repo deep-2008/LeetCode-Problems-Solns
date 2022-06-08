@@ -1,62 +1,67 @@
 class UnionFind{
-    vector<int> root,rank;
+    vector<int> rank,parent;
     int count;
-    
     public:
-    UnionFind(int sz): root(sz),rank(sz),count(sz){
-        for(int i=0;i<sz;i++){
-            root[i]=i;
-            rank[i]=1;
-        }
-    }
+    UnionFind(int sz):rank(sz),parent(sz),count(sz){
+       for(int i=0;i<sz;i++){
+           rank[i]=0;
+           parent[i]=i;
+       }
+   }
     
-    int find(int x){
-        if(x==root[x])
+    int findp(int x){
+        if(x==parent[x])
             return x;
-        return root[x]=find(root[x]);
+        return parent[x]=findp(parent[x]);
     }
     
-    void unionfind(int x,int y){
-        int rootX=find(x);
-        int rootY=find(y);
-        
-        if(rootX!=rootY){
-            if(rank[rootX]>rank[rootY])
-                root[rootY]=rootX;
-            
-            else if(rank[rootX]<rank[rootY])
-                root[rootX]=rootY;
-            
-            else{
-                root[rootY]=rootX;
-                rank[rootX]+=1;
-            }
-            count--;
+    void unionfind(int u,int v){
+        u=findp(u);
+        v=findp(v);
+       
+        if(u!=v){
+        if(rank[u] < rank[v]){
+            parent[u] =v;
         }
         
+        else if(rank[u] > rank[v])
+            parent[v]=u;
+        
+        else{
+            parent[u]=v;
+            rank[v]++;
+        }
+        count--;
+        }
     }
     
-    int getcount(){
-        return (count);
+    // bool isConnected(int u,int v){
+    //     return findp(u)==findp(v);
+    // }
+    
+    int getCount(){
+        return count;
     }
 };
+
 class Solution {
 public:
     int findCircleNum(vector<vector<int>>& isConnected) {
         int n=isConnected.size();
         
-        if (n==0)
-            return 0;
         UnionFind uf(n);
         
         for(int i=0;i<n;i++){
             for(int j=0;j<n;j++){
-                if(isConnected[i][j]==1){
-                    uf.unionfind(i,j);
-                }
+            
+            if(isConnected[i][j]==1)
+            uf.unionfind(i,j);
+            
             }
         }
-        return uf.getcount();
         
+        return uf.getCount();
     }
 };
+
+
