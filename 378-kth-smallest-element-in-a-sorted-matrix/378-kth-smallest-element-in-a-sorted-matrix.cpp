@@ -8,17 +8,15 @@ public:
         
         for(int i=0;i<n;i++){
             for(int j=0;j<n;j++){
-                maxh.push(matrix[i][j]);            
+                maxh.push(matrix[i][j]); 
+                
+                if(maxh.size()>k)
+                    maxh.pop();
                 
             }
         }
         
-        int x=(n*n)-k;
         
-        while(x>0){
-            maxh.pop();
-            x--;
-        }
         
         return maxh.top();
 //         while(l<=h){
