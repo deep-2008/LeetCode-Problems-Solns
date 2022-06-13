@@ -1,60 +1,31 @@
-
 class Solution {
-public:
-    
-    int findDuplicate(vector<int>& nums) {
+    int isPossible(vector<int>& nums,int mid){
+        int count=0;
         
-        int l=1,r=nums.size()-1,count=0;
-        while(l<=r){
-            int mid=l+(r-l)/2;
-            count=0;
-            for(int i=0;i<nums.size();i++){
-                if(nums[i]<=mid)
-                    count++;
-            }
-            if(count<=mid)
-                l=mid+1;
-            else
-                r=mid-1;
+        for(int i=0;i<nums.size();i++){
+            if(nums[i] <=mid)
+                count++;
         }
-        return l;
+        
+        return count;
+    }
+public:
+    int findDuplicate(vector<int>& nums) {
+        int n=nums.size();
+        int l=0,h=n-1,duplicate=0;
+        
+        while(l<=h){
+            int mid=l+(h-l)/2;
+            
+            if(isPossible(nums,mid) > mid){
+                duplicate=mid;
+                h=mid-1;
+            }
+            
+            else
+                l=mid+1;
+        }
+        
+        return duplicate;
     }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
