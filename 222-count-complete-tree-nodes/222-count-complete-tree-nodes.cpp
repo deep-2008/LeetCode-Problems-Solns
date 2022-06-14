@@ -10,19 +10,36 @@
  * };
  */
 class Solution {
-    int ans=0;
+    int leftHeight(TreeNode* root){
+        int height=1;
+        while(root!=NULL){
+            height++;
+            root=root->left;
+        }
+        return height;
+    }
+    
+     int rightHeight(TreeNode* root){
+        int height=1;
+        while(root!=NULL){
+            height++;
+            root=root->right;
+        }
+         return height;
+    }
+    
 public:
     int countNodes(TreeNode* root) {
         if(root==NULL)
             return 0;
         
-        int count=0;
-        int l=countNodes(root->left);
-        int r=countNodes(root->right);
+        int lh =leftHeight(root->left);
+        int rh = rightHeight(root->right);
         
-        count=l+r+1;
-        ans+=count;
+        if(lh == rh)
+            return (1<<lh)-1;
         
-        return count;
+        else
+            return 1+countNodes(root->left)+countNodes(root->right);
     }
 };
