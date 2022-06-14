@@ -1,28 +1,23 @@
 class Solution {
 public:
-    int minDistance(string X, string Y) {
-        int m=X.size();
-	    int n=Y.size();
-	    int result = n+m;
-        int dp[m+1][n+1];
+    int minDistance(string word1, string word2) {
+        int n=word1.size();
+        int m=word2.size();
         
-        for(int i=0;i<m+1;i++){
-            for(int j=0;j<n+1;j++){
+        vector<vector<int>> dp(n+1,vector<int> (m+1,-1));
+        
+        for(int i=0;i<n+1;i++){
+            for(int j=0;j<m+1;j++){
                 if(i==0 || j==0)
-                dp[i][j]=0;
+                    dp[i][j]=0;
                 
-                else if(X[i-1]==Y[j-1])
-                dp[i][j]= 1+dp[i-1][j-1];
+                else if(word1[i-1]==word2[j-1])
+                    dp[i][j] = dp[i-1][j-1]+1;
                 
                 else
-                dp[i][j] = max(dp[i-1][j],dp[i][j-1]);
+                    dp[i][j] = max(dp[i-1][j],dp[i][j-1]);
             }
         }
-        
-        if(dp[m][n] == n)
-        return m-dp[m][n];
-        
-        else 
-        return (result - (2*dp[m][n]));
+        return (m+n)-(2*dp[n][m]);
     }
 };
