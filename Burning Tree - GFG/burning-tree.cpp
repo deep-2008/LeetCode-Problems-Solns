@@ -95,10 +95,10 @@ class Solution {
         Node* l=helper(root->left,target);
         Node* r=helper(root->right,target);
         
-        if(left==NULL && right==NULL)
-        return NULL;
+        // if(left==NULL && right==NULL)
+        // return NULL;
         
-       else if(l==NULL)
+        if(l==NULL)
         return r;
         
        else if(r==NULL)
