@@ -98,10 +98,10 @@ class Solution {
         if(left==NULL && right==NULL)
         return NULL;
         
-        if(l==NULL)
+       else if(l==NULL)
         return r;
         
-        if(r==NULL)
+       else if(r==NULL)
         return l;
     }
     
