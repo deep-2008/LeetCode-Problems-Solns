@@ -10,17 +10,24 @@
  * };
  */
 class Solution {
-public:
-    TreeNode* solve(vector<int>& preorder,int &i,int ub){
-        if(i==preorder.size() || preorder[i]>ub)
+    int i=0;
+    
+    TreeNode* helper(vector<int>& preorder,int ub){
+        if(i==preorder.size() || preorder[i] > ub)
             return NULL;
-        TreeNode* root=new TreeNode(preorder[i++]);
-        root->left=solve(preorder,i,root->val);
-        root->right=solve(preorder,i,ub);
+        
+        TreeNode* root=new TreeNode(preorder[i]);
+        i++;
+        
+        root->left=helper(preorder,root->val);
+        root->right=helper(preorder,ub);
+        
         return root;
     }
+    
+public:
     TreeNode* bstFromPreorder(vector<int>& preorder) {
-        int i=0;
-        return solve(preorder,i,INT_MAX);
+        
+        return helper(preorder,INT_MAX);
     }
 };
