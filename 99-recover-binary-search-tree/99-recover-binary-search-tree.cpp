@@ -10,37 +10,39 @@
  * };
  */
 class Solution {
-public:
-    TreeNode *first,*last,*prev,*middle;
+    TreeNode* f=NULL,*s=NULL,*t=NULL,*prev=NULL;
     
-    void recover(TreeNode *root){
+    void recover(TreeNode* root){
         if(root==NULL)
-            return ;
+            return;
         
         recover(root->left);
-        if(prev!=NULL && (root->val < prev->val)){
-            if(first==NULL){
-                first=prev;
-                middle=root;
-            }
-            
-            else
-                last=root;
-        }
         
+        if(prev!=NULL && root->val<prev->val){
+            if(f==NULL){
+                f=prev;
+                s=root;
+            }
+            else
+                t=root;
+        }
         prev=root;
+        
         recover(root->right);
     }
-   
+public:
     void recoverTree(TreeNode* root) {
-        
+        if(root==NULL)
+            return;
+        // f=root;
         
         recover(root);
-        if(first && last)
-        swap(first->val,last->val);
         
-        else if(first && middle)
-            swap(first->val,middle->val);
+        if(t!=NULL)
+            swap(t->val,f->val);
         
+        else
+            swap(f->val,s->val);
     }
 };
+
