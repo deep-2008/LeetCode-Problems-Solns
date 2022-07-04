@@ -1,29 +1,45 @@
+//T.C = O(log n)
+// class Solution {
+// public:
+//     int singleNonDuplicate(vector<int>& nums) {
+//         int n=nums.size();
+//         int l=0,h=n-1;
+        
+//         while(l<=h){
+//             int mid=l+(h-l)/2;
+            
+//             if((mid>0 && nums[mid]==nums[mid-1]) || (mid<n-1) && nums[mid]==nums[mid+1]){
+//                 if(mid>0 && nums[mid-1]==nums[mid]){
+//                     if((mid-1)%2==0)
+//                         l=mid+1;
+//                     else
+//                         h=mid-1;
+//                 }
+//                 else{
+//                     if(mid%2==0)
+//                         l=mid+1;
+//                     else
+//                         h=mid-1;
+//                 }
+//             }
+//             else
+//             return nums[mid];
+//         }
+//         return 0;
+//     }
+// };
+
+
+
+//T.C = O(n)
 class Solution {
 public:
     int singleNonDuplicate(vector<int>& nums) {
-        int n=nums.size();
-        int l=0,h=n-1;
+        int Xor=0;
         
-        while(l<=h){
-            int mid=l+(h-l)/2;
-            
-            if((mid>0 && nums[mid]==nums[mid-1]) || (mid<n-1) && nums[mid]==nums[mid+1]){
-                if(mid>0 && nums[mid-1]==nums[mid]){
-                    if((mid-1)%2==0)
-                        l=mid+1;
-                    else
-                        h=mid-1;
-                }
-                else{
-                    if(mid%2==0)
-                        l=mid+1;
-                    else
-                        h=mid-1;
-                }
-            }
-            else
-            return nums[mid];
+        for(int i=0;i<nums.size();i++){
+            Xor^=nums[i];
         }
-        return 0;
+        return Xor;
     }
 };
