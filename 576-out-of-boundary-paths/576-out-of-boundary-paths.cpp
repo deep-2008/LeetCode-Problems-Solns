@@ -4,15 +4,17 @@ class Solution {
     long long int dp[51][51][51];
     
     long long int dfs(int m,int n,int r,int c,int move,int maxMove){
-        if(move==maxMove){
-            if(r<0 || c<0 || r==m || c==n )
+        if(r<0 || c<0 || r==m || c==n )
                 return 1;
-            else
+        
+        if(move==maxMove){
+            // if(r<0 || c<0 || r==m || c==n )
+            //     return 1;
+            // else
                 return 0;
         }
         
-        if(r<0 || c<0 || r==m || c==n )
-                return 1;
+        
         
         if(dp[r][c][move]!=-1)
             return dp[r][c][move];
