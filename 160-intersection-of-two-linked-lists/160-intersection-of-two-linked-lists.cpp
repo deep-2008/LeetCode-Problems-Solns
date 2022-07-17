@@ -6,6 +6,43 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+// class Solution {
+// public:
+//     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+//         auto hb=headB,ha=headA;
+        
+//         while(hb->next)
+//             hb=hb->next;
+        
+//         while(ha->next)
+//             ha=ha->next;
+        
+//         hb->next=headA;
+//         ha->next=headB;
+        
+//         ha=headA;
+//         hb=headB;
+        
+//         while(ha!=hb){
+//             if(ha->val==hb->val){
+//                 if(ha->next && ha->next->val==hb->next->val)
+//                     return ha;
+//             }
+//             ha=ha->next;
+//             hb=hb->next;
+//         }
+//         return NULL;
+//     }
+// };
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
