@@ -2,15 +2,7 @@ class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
         int m=matrix.size();
-        int n=matrix[0].size();
-        
-        // int r=0,c=0;
-        // for(int i=0;i<m;i++){
-        //     if(matrix[i][n-1]>=target){
-        //         r=i;break;
-        //     }
-        // }
-          
+        int n=matrix[0].size();          
         
         for(int i=n-1;i>=0;i--){
         int l=0,h=m-1;
