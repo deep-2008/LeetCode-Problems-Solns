@@ -33,6 +33,7 @@ public:
         int sum=accumulate(piles.begin(),piles.end(),0);
         memset(dp,-1,sizeof(dp));
         
-        return solve(piles,0,n-1,0,alice,bob,sum/2);
+        // return solve(piles,0,n-1,0,alice,bob,sum/2);
+        return true;
     }
 };
